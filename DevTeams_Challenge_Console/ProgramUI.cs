@@ -192,14 +192,14 @@ namespace DevTeams_Challenge_Console
         {
             Console.Clear();
             DisplayAllDevTeams();
-            Console.Write("Please enter number of Dev Team to add members to: ");
+            Console.Write("Please enter Team Number of Dev Team to add members to: ");
             int teamID = Convert.ToInt32(Console.ReadLine());
             bool addMembers = true;
             while (addMembers)
             {
                 Console.Clear();
                 DisplayAllDevelopers();
-                Console.Write("Please enter ID# of the Developer you want to add: ");
+                Console.Write("Please enter ID Number of the Developer you want to add: ");
                 int devID = Convert.ToInt32(Console.ReadLine());
                 if (_devTeamRepo.AddDeveloperToTeam(devID, teamID))
                 {
@@ -223,7 +223,7 @@ namespace DevTeams_Challenge_Console
         {
             Console.Clear();
             DisplayAllDevTeams();
-            Console.Write("Please enter number of Dev Team to remove members from: ");
+            Console.Write("Please enter Team Number of Dev Team to remove members from: ");
             int teamID = Convert.ToInt32(Console.ReadLine());
             DevTeam team = _devTeamRepo.GetDevTeamByID(teamID);
             bool addMembers = true;
@@ -231,7 +231,7 @@ namespace DevTeams_Challenge_Console
             {
                 Console.Clear();
                 DisplayAllDevelopers();
-                Console.Write("Please enter ID# of the Developer you want to remove: ");
+                Console.Write("Please enter ID Number of the Developer you want to remove: ");
                 int devID = Convert.ToInt32(Console.ReadLine());
                 if (_devTeamRepo.RemoveDeveloperFromTeam(devID, teamID))
                 {
@@ -249,7 +249,7 @@ namespace DevTeams_Challenge_Console
                 }
                 else if (team.Developers.Count == 0)
                 {
-                    Console.WriteLine("There are no members on this team to remove");
+                    Console.WriteLine("There are no more members on this team to remove");
                     addMembers = false;
                 }
 
@@ -268,7 +268,7 @@ namespace DevTeams_Challenge_Console
         private void DeleteExistingDevTeam()
         {
             DisplayAllDevTeams();
-            Console.Write("Enter number of the team you want to remove: ");
+            Console.Write("Please enter Team Number of the team you want to remove: ");
             int teamID = Convert.ToInt32(Console.ReadLine());
             DevTeam toRemove = _devTeamRepo.GetDevTeamByID(teamID);
             if (_devTeamRepo.RemoveDevTeam(toRemove))
@@ -290,7 +290,7 @@ namespace DevTeams_Challenge_Console
             dev.FirstName = Console.ReadLine();
             Console.Write("Enter Last Name: ");
             dev.LastName = Console.ReadLine();
-            Console.WriteLine("Developer Specialty (use number):\n" +
+            Console.WriteLine("Please enter the Number corresponding to the Developer's Specialty:\n" +
                 "1: Front-End\n" +
                 "2: Back-End\n" +
                 "3: Testing\n");
@@ -338,7 +338,7 @@ namespace DevTeams_Challenge_Console
             {
                 DisplayDevBasicInfo(developer);
             }
-            Console.Write("Enter the ID of the developer you want to look up: ");
+            Console.Write("Enter the ID Number of the developer you want to look up: ");
             int devID = Convert.ToInt32(Console.ReadLine());
             Developer dev = _devTeamRepo.GetDevByID(devID);
             DisplayDevFullInfo(dev);
@@ -365,20 +365,20 @@ namespace DevTeams_Challenge_Console
             {
                 DisplayDevBasicInfo(dev);
             }
-            Console.Write("Enter the ID of the developer you want to update: ");
+            Console.Write("Enter the ID Number of the developer you want to update: ");
             int lookupID = Convert.ToInt32(Console.ReadLine());
             Developer oldDev = _devTeamRepo.GetDevByID(lookupID);
             if (oldDev != default)
             {
-                Console.Write("Please enter new first name or press enter: ");
+                Console.Write("Please enter new First Name or press Enter: ");
                 string firstName = Console.ReadLine();
                 if (firstName != "")
                     oldDev.FirstName = firstName;
-                Console.Write("Please enter new last name or press enter: ");
+                Console.Write("Please enter new Last Name or press Enter: ");
                 string lastName = Console.ReadLine();
                 if (lastName != "")
                     oldDev.LastName = lastName;
-                Console.WriteLine("Enter new developer specialty (use number) or press enter:\n" +
+                Console.WriteLine("Input the Number corresponding to the Developer's new Specialty or press Enter:\n" +
                     "1: Front-End\n" +
                     "2: Back-End\n" +
                     "3: Testing\n");
@@ -417,7 +417,7 @@ namespace DevTeams_Challenge_Console
             {
                 DisplayDevBasicInfo(dev);
             }
-            Console.Write("Enter ID# of developer you want to remove: ");
+            Console.Write("Enter ID Number of developer you want to remove: ");
             int devID = Convert.ToInt32(Console.ReadLine());
             Developer toRemove = _devTeamRepo.GetDevByID(devID);
             if (_devTeamRepo.RemoveDeveloper(toRemove))
